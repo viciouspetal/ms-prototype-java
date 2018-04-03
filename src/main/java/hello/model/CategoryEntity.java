@@ -5,13 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class BrandEntity {
+public class CategoryEntity {
+
     @Id
     @GeneratedValue
-    private
-    String id;
+    private String id;
     private String name;
-    private String owner;
+    private String department;
 
     public String getId() {
         return id;
@@ -29,11 +29,11 @@ public class BrandEntity {
         this.name = name;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

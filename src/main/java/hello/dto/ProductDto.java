@@ -5,6 +5,9 @@ import java.util.Set;
 public class ProductDto {
     private String name;
     private double weight;
+    private double height;
+    private double width;
+    private double depth;
     private String colour;
     private double unitPrice;
     private Set<Category> categories;
@@ -56,5 +59,29 @@ public class ProductDto {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getDepth() {
+        return depth;
+    }
+
+    public void setDepth(double depth) {
+        this.depth = depth;
     }
 }
