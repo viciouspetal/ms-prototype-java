@@ -1,3 +1,6 @@
+# CI Status
+[![Build Status](https://travis-ci.org/viciouspetal/ms-prototype-java.svg?branch=master)](https://travis-ci.org/viciouspetal/ms-prototype-java)
+
 # Building the app
 gradle build
 
