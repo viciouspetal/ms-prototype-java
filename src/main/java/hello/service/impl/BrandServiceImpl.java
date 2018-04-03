@@ -1,7 +1,6 @@
 package hello.service.impl;
 
 import hello.BrandRepository;
-import hello.dto.Brand;
 import hello.model.BrandEntity;
 import hello.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;

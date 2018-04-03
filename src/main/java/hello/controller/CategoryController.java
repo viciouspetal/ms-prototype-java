@@ -1,30 +1,30 @@
 package hello.controller;
 
-import hello.dto.ProductDto;
-import hello.service.ProductService;
+import hello.dto.CategoryDto;
+import hello.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController("/products")
-public class ProductController {
+//@RestController("/categories")
+public class CategoryController {
 
     @Autowired
-    private ProductService productService;
+    private CategoryService categoryService;
 
-   // @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<ProductDto> getList() {
+    //@RequestMapping(value = "/list", method = RequestMethod.GET)
+    public List<CategoryDto> getList() {
         throw new UnsupportedOperationException();
     }
 
     //@RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ProductDto create(@RequestBody ProductDto dto) {
+    public CategoryDto create(@RequestBody CategoryDto dto) {
         throw new UnsupportedOperationException();
     }
 
     //@RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ProductDto update(@RequestParam String id, @RequestBody ProductDto dto) {
+    public CategoryDto update(@RequestParam String id, @RequestBody CategoryDto dto) {
         throw new UnsupportedOperationException();
     }
 }

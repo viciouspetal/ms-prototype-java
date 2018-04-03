@@ -10,8 +10,8 @@ public class ProductDto {
     private double depth;
     private String colour;
     private double unitPrice;
-    private Set<Category> categories;
-    private Brand brand;
+    private Set<CategoryDto> categories;
+    private BrandDto brand;
 
     public String getName() {
         return name;
@@ -45,20 +45,20 @@ public class ProductDto {
         this.unitPrice = unitPrice;
     }
 
-    public Set<Category> getCategories() {
+    public Set<CategoryDto> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<Category> categories) {
+    public void setCategories(Set<CategoryDto> categories) {
         this.categories = categories;
     }
 
-    public Brand getBrand() {
+    public BrandDto getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrand(BrandDto brandDto) {
+        this.brand = brandDto;
     }
 
     public double getHeight() {

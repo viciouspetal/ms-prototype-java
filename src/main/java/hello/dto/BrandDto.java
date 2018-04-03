@@ -1,6 +1,6 @@
 package hello.dto;
 
-public class Brand {
+public class BrandDto {
     private String name;
     private String owner;
 

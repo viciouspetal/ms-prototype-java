@@ -1,11 +1,6 @@
 package hello.model;
 
-import hello.dto.Brand;
-import hello.dto.Category;
-
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class ProductEntity {
