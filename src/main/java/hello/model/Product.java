@@ -3,7 +3,7 @@ package hello.model;
 import javax.persistence.*;
 
 @Entity
-public class ProductEntity {
+public class Product {
     @Id
     @GeneratedValue
     private String id;
@@ -15,9 +15,9 @@ public class ProductEntity {
     private String colour;
     private double unitPrice;
     @OneToOne
-    private CategoryEntity categories;
+    private Category categories;
     @OneToOne
-    private BrandEntity brand;
+    private Brand brand;
 
     public String getId() {
         return id;
@@ -83,19 +83,19 @@ public class ProductEntity {
         this.unitPrice = unitPrice;
     }
 
-    public CategoryEntity getCategories() {
+    public Category getCategories() {
         return categories;
     }
 
-    public void setCategories(CategoryEntity categories) {
+    public void setCategories(Category categories) {
         this.categories = categories;
     }
 
-    public BrandEntity getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(BrandEntity brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 }

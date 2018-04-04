@@ -1,9 +1,9 @@
 package hello.service;
 
-import hello.model.BrandEntity;
+import hello.model.Brand;
 
 import java.util.List;
 
 public interface BrandService {
-    List<BrandEntity> list();
+    List<Brand> list();
 }

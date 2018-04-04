@@ -1,7 +1,7 @@
 package hello.service.impl;
 
 import hello.BrandRepository;
-import hello.model.BrandEntity;
+import hello.model.Brand;
 import hello.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class BrandServiceImpl implements BrandService {
     private BrandRepository repo;
 
     @Override
-    public List<BrandEntity> list() {
+    public List<Brand> list() {
         return repo.findAll();
     }
 }

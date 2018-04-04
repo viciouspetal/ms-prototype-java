@@ -1,7 +1,6 @@
 package hello.controller;
 
-import hello.dto.BrandDto;
-import hello.model.BrandEntity;
+import hello.model.Brand;
 import hello.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,17 +15,17 @@ public class BrandController {
     private BrandService brandService;
 
     @RequestMapping(value="/list", method = RequestMethod.GET)
-    public List<BrandEntity> getList(){
+    public List<Brand> getList(){
         return brandService.list();
     }
 
     @RequestMapping(value="/create", method = RequestMethod.POST)
-    public BrandDto create(@RequestBody BrandDto dto){
+    public Brand create(@RequestBody Brand object){
         throw new UnsupportedOperationException();
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public BrandDto update(@RequestParam String id, @RequestBody BrandDto dto){
+    public Brand update(@RequestParam String id, @RequestBody Brand object){
         throw new UnsupportedOperationException();
     }
 }
