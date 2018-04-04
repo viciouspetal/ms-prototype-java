@@ -1,5 +1,8 @@
-# CI Status
+# Status
+## CI
 [![Build Status](https://travis-ci.org/viciouspetal/ms-prototype-java.svg?branch=master)](https://travis-ci.org/viciouspetal/ms-prototype-java)
+## Sonar
+https://sonarcloud.io/api/project_badges/measure?project=prototype&metric=alert_status
 
 # Building the app
 gradlew build
