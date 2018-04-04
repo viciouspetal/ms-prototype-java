@@ -14,9 +14,12 @@ gradlew build && java -jar build/libs/ms-prototype-java-0.0.1.jar
 `http://localhost:8080/swagger-ui.html`
 
 # Travis CI
-`https://travis-ci.org/viciouspetal/ms-prototype-java`
+https://travis-ci.org/viciouspetal/ms-prototype-java
 
 # H2
 **Console** `http://localhost:8080/h2-console`
 
 **DB URL** `jdbc:h2:mem:testdb`
+
+# Sonar - Code Quality
+https://sonarcloud.io/dashboard?id=prototype
