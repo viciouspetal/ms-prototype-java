@@ -1,6 +1,6 @@
 package hello.dto;
 
-public class Category {
+public class CategoryDto {
     private String name;
     private String department;
 

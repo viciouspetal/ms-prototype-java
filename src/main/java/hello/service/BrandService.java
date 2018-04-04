@@ -1,6 +1,5 @@
 package hello.service;
 
-import hello.dto.Brand;
 import hello.model.BrandEntity;
 
 import java.util.List;
