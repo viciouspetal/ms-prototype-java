@@ -3,3 +3,5 @@ jdk:
 - oraclejdk8
 after_success:
 - "./gradlew build jacocoTestReport coveralls"
+- "gradlew sonarqube -Dsonar.organization=$SONAR_TOKEN -Dsonar.branch.name=$TRAVIS_BRANCH -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=SONAR_ACCESS_TOKEN"
+
