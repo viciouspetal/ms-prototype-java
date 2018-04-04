@@ -53,3 +53,7 @@ jacocoTestReport {
         html.destination "${buildDir}/reports/coverage"
     }
 }
+
+plugins {
+  id "org.sonarqube" version "2.6"
+}
