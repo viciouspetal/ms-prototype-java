@@ -7,23 +7,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController("/products")
+@RestController
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-   // @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<ProductDto> getList() {
         throw new UnsupportedOperationException();
     }
 
-    //@RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ProductDto create(@RequestBody ProductDto dto) {
         throw new UnsupportedOperationException();
     }
 
-    //@RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public ProductDto update(@RequestParam String id, @RequestBody ProductDto dto) {
         throw new UnsupportedOperationException();
     }

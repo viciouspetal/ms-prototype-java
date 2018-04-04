@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/brands")
+@RestController
+@RequestMapping(value = "/brands")
 public class BrandController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class BrandController {
         throw new UnsupportedOperationException();
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public BrandDto update(@RequestParam String id, @RequestBody BrandDto dto){
         throw new UnsupportedOperationException();
     }
