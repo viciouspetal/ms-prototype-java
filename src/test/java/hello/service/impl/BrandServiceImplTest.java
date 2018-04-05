@@ -13,9 +13,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
@@ -50,9 +50,7 @@ public class BrandServiceImplTest {
 
     @Test
     public void create_when_validBrandProvided_then_brandIsPersisted() {
-        Brand toBeSaved = new Brand();
-        toBeSaved.setName("Brand1");
-        toBeSaved.setOwner("Owner1");
+        Brand toBeSaved = new Brand("Brand1", "Owner1");
         when(brandRepositoryMock.save(toBeSaved)).thenReturn(new Brand());
 
         Brand result = brandService.create(toBeSaved);
@@ -67,14 +65,15 @@ public class BrandServiceImplTest {
 
     @Test
     public void update_when_validBrandProvided_then_brandIsUpdated() {
-        Brand toBeSaved = new Brand();
-        toBeSaved.setName("Brand1");
-        toBeSaved.setOwner("Owner1");
-        when(brandRepositoryMock.save(toBeSaved)).thenReturn(new Brand());
+        Brand existing = new Brand("name", "owner");
+        existing.setId(UUID.randomUUID().toString());
 
-        Brand result = brandService.update(toBeSaved);
+        Brand toBeSaved = new Brand("UpdatedBrand", "UpdatedOwner");
+        toBeSaved.setId(existing.getId());
+        when(brandRepositoryMock.getOne(existing.getId())).thenReturn(existing);
 
-        assertThat(result, notNullValue());
+        brandService.update(toBeSaved);
+
         ArgumentCaptor<Brand> brandCaptor = ArgumentCaptor.forClass(Brand.class);
         verify(brandRepositoryMock).save(brandCaptor.capture());
         Brand capturedBrand = brandCaptor.getValue();

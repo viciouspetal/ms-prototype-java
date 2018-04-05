@@ -27,7 +27,11 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public Brand update(Brand brand) {
-        return repo.save(brand);
+        Brand existingBrand = repo.getOne(brand.getId());
+        existingBrand.setOwner(brand.getOwner());
+        existingBrand.setName(brand.getName());
+
+        return repo.save(existingBrand);
     }
 
     @Override
