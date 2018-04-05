@@ -1,5 +1,5 @@
 package hello.model;
 
-public class BaseObject {
+public interface BaseObject {
 
 }

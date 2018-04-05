@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Brand extends BaseObject{
+public class Brand implements BaseObject{
     @Id
     @GenericGenerator(name = "uuid-hex", strategy = "org.hibernate.id.UUIDHexGenerator")
     @GeneratedValue(generator = "uuid-hex")

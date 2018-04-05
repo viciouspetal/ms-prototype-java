@@ -101,10 +101,11 @@ public class BrandServiceImplTest {
 
         brandService.delete("id");
 
+        verify(brandRepositoryMock).findById("id");
         verify(brandRepositoryMock, never()).delete(Mockito.any(Brand.class));
     }
     @Test
-    public void delete_when_idToBeDeletedExists_then_brandforThatIdIsDeleted() {
+    public void delete_when_idToBeDeletedExists_then_brandForThatIdIsDeleted() {
         Optional<Brand> toBeDeleted = Optional.of(new Brand("name", "owner"));
         when(brandRepositoryMock.findById("id")).thenReturn(toBeDeleted);
 
