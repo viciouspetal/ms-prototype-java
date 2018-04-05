@@ -1,17 +1,17 @@
 package hello.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Brand {
+public class Brand extends BaseObject{
     @Id
-    @GeneratedValue
-    private
-    String id;
-    private String name;
-    private String owner;
+    @GenericGenerator(name = "uuid-hex", strategy = "org.hibernate.id.UUIDHexGenerator")
+    @GeneratedValue(generator = "uuid-hex")
+    protected String id;
 
     public String getId() {
         return id;
@@ -19,6 +19,15 @@ public class Brand {
 
     public void setId(String id) {
         this.id = id;
+    }
+    private String name;
+    private String owner;
+
+    public Brand(){}
+
+    public Brand(String name, String owner){
+        this.name = name;
+        this.owner = owner;
     }
 
     public String getName() {
