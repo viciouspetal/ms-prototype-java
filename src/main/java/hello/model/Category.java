@@ -1,14 +1,16 @@
 package hello.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Category {
-
     @Id
-    @GeneratedValue
+    @GenericGenerator(name = "uuid-hex", strategy = "org.hibernate.id.UUIDHexGenerator")
+    @GeneratedValue(generator = "uuid-hex")
     private String id;
     private String name;
     private String department;
