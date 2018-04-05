@@ -7,7 +7,6 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
-        classpath("org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2")
     }
 }
 plugins {
@@ -15,12 +14,10 @@ plugins {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: "jacoco"
-apply plugin: "com.github.kt3k.coveralls"
 
 bootJar {
     baseName = 'ms-prototype-java'
