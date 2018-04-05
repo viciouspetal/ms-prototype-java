@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Product {
+public class Product implements BaseObject{
     @Id
     @GenericGenerator(name = "uuid-hex", strategy = "org.hibernate.id.UUIDHexGenerator")
     @GeneratedValue(generator = "uuid-hex")

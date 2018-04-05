@@ -21,7 +21,7 @@ apply plugin: "jacoco"
 
 bootJar {
     baseName = 'ms-prototype-java'
-    version =  '0.0.1'
+    version =  '0.0.5'
 }
 
 repositories {

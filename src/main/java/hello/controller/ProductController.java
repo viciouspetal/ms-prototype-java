@@ -16,7 +16,7 @@ public class ProductController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<Product> getList() {
-        throw new UnsupportedOperationException();
+        return productService.list();
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
