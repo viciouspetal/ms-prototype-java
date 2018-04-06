@@ -5,8 +5,10 @@ import hello.model.Category;
 import hello.model.Product;
 import hello.repositories.ProductRepository;
 import hello.service.ProductService;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -48,6 +51,22 @@ public class ProductServiceImplTest {
         assertThat(products.get(0).getCategories(), is(existing1.getCategories()));
 
         verify(productRepositoryMock).findAll();
+    }
+
+    @Test
+    public void create_when_validProduct_then_productIsCreated() {
+        Product toBeSaved = generateProduct();
+        when(productRepositoryMock.save(toBeSaved)).thenReturn(new Product());
+
+        Product result = productService.create(toBeSaved);
+
+        assertThat(result, notNullValue());
+        ArgumentCaptor<Product> categoryCapture = ArgumentCaptor.forClass(Product.class);
+        verify(productRepositoryMock).save(categoryCapture.capture());
+
+        Product capturedCategory = categoryCapture.getValue();
+        assertThat(capturedCategory.getName(), Matchers.is(toBeSaved.getName()));
+        assertThat(capturedCategory.getCategories(), Matchers.is(toBeSaved.getCategories()));
     }
 
     private Product generateProduct(){
