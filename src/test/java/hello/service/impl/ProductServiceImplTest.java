@@ -3,23 +3,29 @@ package hello.service.impl;
 import hello.model.Brand;
 import hello.model.Category;
 import hello.model.Product;
+import hello.model.Product;
 import hello.repositories.ProductRepository;
 import hello.service.ProductService;
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -61,12 +67,62 @@ public class ProductServiceImplTest {
         Product result = productService.create(toBeSaved);
 
         assertThat(result, notNullValue());
-        ArgumentCaptor<Product> categoryCapture = ArgumentCaptor.forClass(Product.class);
-        verify(productRepositoryMock).save(categoryCapture.capture());
+        ArgumentCaptor<Product> ProductCapture = ArgumentCaptor.forClass(Product.class);
+        verify(productRepositoryMock).save(ProductCapture.capture());
 
-        Product capturedCategory = categoryCapture.getValue();
-        assertThat(capturedCategory.getName(), Matchers.is(toBeSaved.getName()));
-        assertThat(capturedCategory.getCategory(), Matchers.is(toBeSaved.getCategory()));
+        Product capturedProduct = ProductCapture.getValue();
+        assertThat(capturedProduct.getName(), Matchers.is(toBeSaved.getName()));
+        assertThat(capturedProduct.getUnitPrice(), Matchers.is(toBeSaved.getUnitPrice()));
+        assertThat(capturedProduct.getCategory(), is(toBeSaved.getCategory()));
+    }
+
+    @Test
+    public void update_when_productExists_then_productIsUpdated() {
+        Product existing = generateProduct();
+        existing.setId(UUID.randomUUID().toString());
+
+        Product toBeSaved = generateProduct(existing.getId(), "UpdatedName");
+        toBeSaved.setId(existing.getId());
+        when(productRepositoryMock.getOne(existing.getId())).thenReturn(existing);
+
+        productService.update(toBeSaved);
+
+        ArgumentCaptor<Product> ProductArgumentCaptor = ArgumentCaptor.forClass(Product.class);
+        verify(productRepositoryMock).save(ProductArgumentCaptor.capture());
+        Product capturedProduct = ProductArgumentCaptor.getValue();
+        assertThat(capturedProduct.getName(), Matchers.is(toBeSaved.getName()));
+    }
+
+    @Test
+    public void delete_when_ProductToBeDeletedExists_then_ProductIsDeleted() {
+        Product toBeDeleted = generateProduct();
+        productService.delete(toBeDeleted);
+
+        ArgumentCaptor<Product> ProductCaptor = ArgumentCaptor.forClass(Product.class);
+        verify(productRepositoryMock).delete(ProductCaptor.capture());
+        Product capturedProduct = ProductCaptor.getValue();
+        assertThat(capturedProduct.getName(), CoreMatchers.is(toBeDeleted.getName()));
+
+        verify(productRepositoryMock).delete(toBeDeleted);
+    }
+
+    @Test
+    public void delete_when_idDoesNotExist_then_noProductIsDeleted(){
+        when(productRepositoryMock.findById("id")).thenReturn(null);
+
+        productService.delete("id");
+
+        verify(productRepositoryMock).findById("id");
+        verify(productRepositoryMock, never()).delete(Mockito.any(Product.class));
+    }
+    @Test
+    public void delete_when_idToBeDeletedExists_then_ProductForThatIdIsDeleted() {
+        Optional<Product> toBeDeleted = Optional.of(generateProduct());
+        when(productRepositoryMock.findById("id")).thenReturn(toBeDeleted);
+
+        productService.delete("id");
+
+        verify(productRepositoryMock).delete(toBeDeleted.get());
     }
 
     private Product generateProduct(){
@@ -81,6 +137,14 @@ public class ProductServiceImplTest {
         product.setUnitPrice(25);
         product.setBrands(Arrays.asList(new Brand("brand1", "owner1")));
         product.setCategory(new Category());
+
+        return product;
+    }
+
+    private Product generateProduct(String id, String name){
+        Product product = generateProduct();
+        product.setId(id);
+        product.setName(name);
 
         return product;
     }

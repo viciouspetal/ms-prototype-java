@@ -26,6 +26,11 @@ public class ProductController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public Product update(@RequestParam String id, @RequestBody Product object) {
-        throw new UnsupportedOperationException();
+        return productService.update(object);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void delete(@RequestParam String id) {
+        productService.delete(id);
     }
 }

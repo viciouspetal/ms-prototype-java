@@ -1,6 +1,5 @@
 package hello.service.impl;
 
-import hello.model.Brand;
 import hello.model.Category;
 import hello.repositories.CategoryRepository;
 import hello.service.CategoryService;
@@ -18,13 +17,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CategoryServiceImplTest {
@@ -80,9 +75,9 @@ public class CategoryServiceImplTest {
 
         ArgumentCaptor<Category> categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
         verify(categoryRepositoryMock).save(categoryArgumentCaptor.capture());
-        Category capturedBrand = categoryArgumentCaptor.getValue();
-        assertThat(capturedBrand.getName(), is(toBeSaved.getName()));
-        assertThat(capturedBrand.getDepartment(), is(toBeSaved.getDepartment()));
+        Category capturedCategory = categoryArgumentCaptor.getValue();
+        assertThat(capturedCategory.getName(), is(toBeSaved.getName()));
+        assertThat(capturedCategory.getDepartment(), is(toBeSaved.getDepartment()));
     }
 
     @Test
@@ -92,9 +87,9 @@ public class CategoryServiceImplTest {
 
         ArgumentCaptor<Category> categoryCaptor = ArgumentCaptor.forClass(Category.class);
         verify(categoryRepositoryMock).delete(categoryCaptor.capture());
-        Category capturedBrand = categoryCaptor.getValue();
-        assertThat(capturedBrand.getName(), CoreMatchers.is(toBeDeleted.getName()));
-        assertThat(capturedBrand.getDepartment(), CoreMatchers.is(toBeDeleted.getDepartment()));
+        Category capturedCategory = categoryCaptor.getValue();
+        assertThat(capturedCategory.getName(), CoreMatchers.is(toBeDeleted.getName()));
+        assertThat(capturedCategory.getDepartment(), CoreMatchers.is(toBeDeleted.getDepartment()));
 
         verify(categoryRepositoryMock).delete(toBeDeleted);
     }
