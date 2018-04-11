@@ -1,4 +1,6 @@
 package hello.service;
 
-public interface ProductService {
+import hello.model.Product;
+
+public interface ProductService extends ListService<Product>, CreateService<Product>, UpdateService<Product>, DeleteService<Product> {
 }

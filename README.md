@@ -2,16 +2,16 @@
 ## CI
 [![Build Status](https://travis-ci.org/viciouspetal/ms-prototype-java.svg?branch=master)](https://travis-ci.org/viciouspetal/ms-prototype-java)
 ## Sonar
-https://sonarcloud.io/api/project_badges/measure?project=prototype&metric=alert_status
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=prototype&metric=alert_status)](https://sonarcloud.io/api/project_badges/measure?project=prototype&metric=alert_status)
 
 # Building the app
 gradlew build
 
 # Running the app
-java -jar build/libs/ms-prototype-java-0.0.1.jar
+java -jar build/libs/ms-prototype-java-0.0.5.jar
 
 # Shortcuts
-gradlew build && java -jar build/libs/ms-prototype-java-0.0.1.jar
+gradlew build && java -jar build/libs/ms-prototype-java-0.0.5.jar
 
 # Swagger UI
 `http://localhost:8080/swagger-ui.html`
