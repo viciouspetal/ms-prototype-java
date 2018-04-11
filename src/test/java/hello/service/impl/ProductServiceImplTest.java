@@ -19,7 +19,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -47,8 +47,8 @@ public class ProductServiceImplTest {
         assertThat(products.get(0).getWidth(), is(existing1.getWidth()));
         assertThat(products.get(0).getWeight(), is(existing1.getWeight()));
         assertThat(products.get(0).getUnitPrice(), is(existing1.getUnitPrice()));
-        assertThat(products.get(0).getBrand(), is(existing1.getBrand()));
-        assertThat(products.get(0).getCategories(), is(existing1.getCategories()));
+        assertThat(products.get(0).getBrands(), is(existing1.getBrands()));
+        assertThat(products.get(0).getCategory(), is(existing1.getCategory()));
 
         verify(productRepositoryMock).findAll();
     }
@@ -66,7 +66,7 @@ public class ProductServiceImplTest {
 
         Product capturedCategory = categoryCapture.getValue();
         assertThat(capturedCategory.getName(), Matchers.is(toBeSaved.getName()));
-        assertThat(capturedCategory.getCategories(), Matchers.is(toBeSaved.getCategories()));
+        assertThat(capturedCategory.getCategory(), Matchers.is(toBeSaved.getCategory()));
     }
 
     private Product generateProduct(){
@@ -79,8 +79,8 @@ public class ProductServiceImplTest {
         product.setWeight(10);
         product.setWidth(15);
         product.setUnitPrice(25);
-        product.setBrand(new Brand("brand1", "owner1"));
-        product.setCategories(new Category());
+        product.setBrands(Arrays.asList(new Brand("brand1", "owner1")));
+        product.setCategory(new Category());
 
         return product;
     }

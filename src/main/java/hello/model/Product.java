@@ -2,13 +2,11 @@ package hello.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class Product implements BaseObject{
+public class Product implements BaseObject {
     @Id
     @GenericGenerator(name = "uuid-hex", strategy = "org.hibernate.id.UUIDHexGenerator")
     @GeneratedValue(generator = "uuid-hex")
@@ -20,10 +18,10 @@ public class Product implements BaseObject{
     private double depth;
     private String colour;
     private double unitPrice;
-    @OneToOne
-    private Category categories;
-    @OneToOne
-    private Brand brand;
+    @ManyToOne
+    private Category category;
+    @OneToMany
+    private List<Brand> brands;
 
     public String getId() {
         return id;
@@ -89,19 +87,19 @@ public class Product implements BaseObject{
         this.unitPrice = unitPrice;
     }
 
-    public Category getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategories(Category categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public List<Brand> getBrands() {
+        return brands;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrands(List<Brand> brand) {
+        this.brands = brand;
     }
 }

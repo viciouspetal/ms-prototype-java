@@ -21,7 +21,7 @@ public class ProductController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Product create(@RequestBody Product object) {
-        throw new UnsupportedOperationException();
+        return productService.create(object);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
